@@ -1,0 +1,118 @@
+-var products
+-var yon
+-var edit = true
+
+-function editing(){
+  edit = false
+  -}
+doctype html
+html(lang="en")
+  head
+    meta(charset="UTF-8")
+    meta(http-equiv="X-UA-Compatible" content="IE=edge")
+    meta(name="viewport" content="width=device-width, initial-scale=1.0")
+    title Document
+
+    link(rel="stylesheet" href="/css/bootstrap.min.css") 
+    link(rel="stylesheet" href="/css/styleHome.css")
+
+
+  body 
+    include includes/navbar.pug 
+    
+
+    .container-fluid.pro.categore
+      .row
+
+        .d-none.d-sm-block.col-md-3.col-lg-4.col-xl-2
+          img(src="/images/bank.png", alt="", srcset="",width="100%") 
+        .col-12.col-md-9.col-lg-8.col-xl-10(style="display:flex;background-color:white;height:100%;")
+          .container-fluid(style="height:100%;width:100%;")
+            .row(style="height:60%;")
+            
+              
+              
+             
+              
+
+              -for(pr of prod)  
+                .col-12.col-6.col-md-6.col-lg-4.col-xl-3
+                  .card.catea(style="height:90%;width:100%;position:relative;")
+                    .card-img(style="height:55%;display:flex;justify-content:space-arround;width:70%;")
+                      img.card-img-top(src=pr.product.image alt='Card image cap')
+                      .amount.btn.btn-secondary(style="height:fit-content") #{pr.amount}
+                      
+                       
+                      form(action="/products/deleteProduct", method="post" style="position:absolute;top:0;left:0") 
+                        input(type="hidden" name="id" value=`${pr._id}`)
+                        button.btn.btn-danger(type="submit")  X
+                      
+                      
+                    .card-body(style="height: 45%;width: 100%;padding: 1rem 0rem;display: flex;flex-direction: column;justify-content: space-around;")
+                     
+                      p.card-text(style="width: 100%;text-align: left;")
+                        | #{pr.product.name}
+                      -if(pr.product.shipping){
+                      p.hide | FREE Shipping to Palestinian Territories
+                      -}
+                      
+                      form( method="post") 
+                        
+                        .all(style="display:flex;align-items:center")
+                          input.btn.btn-primary(type='hidden' name="id" value=`${pr._id}`)
+                          input.btn.btn-primary(type='hidden' name="url", value=`https://amazon.com${pr.urls}`)
+                          input.btn.btn-primary(type='hidden' name="name" value=pr.product.name)
+                          input.btn.btn-primary(type='hidden' name="Price" value=pr.product.nprice)
+                          input.btn.btn-primary(type='submit',formaction="/products/buy", value='Buy Now')
+                          input.btn(type='submit' value='Details' href="")
+                          .price-all(style="display:flex;justify-content:space-around;")
+                            .pricee(style="color:blue;") #{(pr.product.Price) + 5}.0 $
+                            
+                    
+                         
+             
+
+
+
+
+
+  
+    footer
+      p.text #{parag}
+      form
+        input(type='text' placeholder="Write us your opinion")
+        input(type='submit' value=yon)
+    
+      ul.list-footer
+        li
+          a(href='#') About
+        li
+          a(href='#') Blog
+        li
+          a(href='#') Delivery
+        li
+          a(href='#') Jobs
+        li
+          a(href='#') Contact
+        li
+          a(href='#') Help
+      .social-media
+        a(href='#')
+          i.fab.fa-instagram
+        a(href='#')
+          i.fab.fa-twitter
+        a(href='#')
+          i.fab.fa-linkedin
+        a(href='#')
+          i.fab.fa-facebook
+        a(href='#')
+          i.fab.fa-youtube
+      p.copyrights &copy; 2020 DeltatyCode
+
+
+
+
+  script(src="/js/popper.js")
+  script(src="/js/bootstrap.min.js")
+  script(src="/js/myJs.js")
+

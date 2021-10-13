@@ -1,0 +1,61 @@
+
+
+doctype html
+html(lang="en")
+    head
+        meta(charset="UTF-8")
+        meta(http-equiv="X-UA-Compatible", content="IE=edge")
+        meta(name="viewport", content="width=device-width, initial-scale=1.0")
+        title Document
+        link(rel="stylesheet" href="/css/bootstrap.min.css") 
+        link(rel="stylesheet" href="/css/styleHome.css")
+    body 
+       include includes/navbar.pug 
+       br
+       br
+       .container
+        form(action="/register",method="POST").row.g-3
+          .col-md-4
+            label.form-label(for='validationDefault01') Name
+            input#validationDefault01.form-control(type='text' , required='', name="name")
+          .col-md-4
+            label.form-label(for='validationDefault02') Email
+            input#validationDefault02.form-control(type='email' placeholder="someone@somthing.any" required='',name="email")
+          
+          
+          .col-md-6
+            label.form-label(for='validationDefault03') Password
+            input#validationDefault03.form-control(type='password' required='',name="password")
+          .col-md-3
+            label.form-label(for='validationDefault04') Country
+            
+            select.form-select(required='',name="country")
+              option(selected  value='Jerusalem') Jerusalem
+              option(  value='Ramallah') Ramallah
+              option(  value='Nablus') Nablus
+              option(  value='Gaza') Gaza
+              option(  value='Jenin') Jenin
+              option(  value='Tulkarm') Tulkarm
+              option(  value='Bethlehem') Bethlehem
+              option(  value='Hebron') Hebron
+              option(  value='Qalqilya') Qalqilya
+              option(  value='Jericho') Jericho
+             
+              
+          .col-md-3
+            label.form-label(for='validationDefault05') Zip
+            input#validationDefault05.form-control(type='text',required="",name="zip")
+          .col-12
+            .form-check
+              input#invalidCheck2.form-check-input(type='checkbox' value='' required='' )
+              label.form-check-label(for='invalidCheck2')
+                | Notify me of the arrival of new products
+         
+          
+          button.btn.btn-primary(type='submit') Submit form
+
+
+    script(src="/js/popper.js")
+    script(src="/js/bootstrap.min.js")
+    script(src="/js/myJs.js")
+    script(src="/js/register")

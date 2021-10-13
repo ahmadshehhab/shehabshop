@@ -1,0 +1,45 @@
+
+doctype html
+html(lang="en")
+    head
+        meta(charset="UTF-8")
+        meta(http-equiv="X-UA-Compatible" content="IE=edge")
+        meta(name="viewport" content="width=device-width, initial-scale=1.0")
+        title Document
+
+        link(rel="stylesheet" href="/css/bootstrap.min.css")
+        link(rel="stylesheet" href="/css/styleHome.css")
+    body 
+        include includes/navbar.pug
+
+        .container
+          .row#prow
+            -for(let product of products)
+             .col.col-12.col-md-6.col-lg-4.col-xl-3#sproductp
+               .card(style='width: 100%;hei ght:20rem;border:0px;')
+                 img.card-img-top( alt='...',style="height:50%;width:100%" src=product.image)
+                 .card-body
+                   h5.card-title 
+                       p #{product.Name}
+                       p price:
+                        span(style="color:blue;padding:5%;") #{(product.Price)+5}$
+                       form(method="POST")
+
+                          input(type="hidden", name="id" value=product.id)
+                          input(type="hidden", name="name" value=product.name)
+                          input(type="hidden", name="Price" value=product.nprice)
+                          input(type="Number" name="c" style="width:100%;" value=1)
+                          input(type="submit" value="Buy now",formaction="/products/buy",style="width:100%;margin-top:5%")
+                          input(type="submit" ,formaction="/products/a",value="Add To Cart",,style="width:100%;margin-top:5%")
+             #aboutp
+                h3 #{product.name}
+                .spec(style="width:50%;font-size:13px")
+                  ul 
+                   -for(sp of spec)
+                    li #{sp}
+
+
+     
+    script(src="/js/bootstrap.min.js")
+    script(src="/js/popper.js")
+    script(src="/js/bootstrap.bundle.min.js")

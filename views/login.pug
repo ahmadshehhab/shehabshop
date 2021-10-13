@@ -1,0 +1,36 @@
+doctype html
+html(lang="en")
+    head
+        meta(charset="UTF-8")
+        meta(http-equiv="X-UA-Compatible" content="IE=edge")
+        meta(name="viewport" content="width=device-width, initial-scale=1.0")
+        title Document
+
+        link(rel="stylesheet" href="/css/bootstrap.min.css")
+        link(rel="stylesheet" href="/css/styleHome.css")
+    body 
+  
+        include includes/navbar.pug 
+
+        .container
+            form(action="/login" method="POST")
+              .mb-3
+                label.form-label(for='exampleInputEmail1') Email address
+                input#exampleInputEmail1.form-control(type='email' aria-describedby='emailHelp' , name="email")
+                #emailHelp.form-text We&apos;ll never share your email with anyone else.
+              .mb-3
+                label.form-label(for='exampleInputPassword1') Password
+                input#exampleInputPassword1.form-control(type='password' , name="password")
+                button.btn.btn-primary(type='submit') Login
+            -if(er)
+                .alert.alert-danger(role='alert')
+                    p #{er}
+        
+        script(src="/js/popper.js")
+        script(src="/js/bootstrap.min.js")
+        script(src="/js/myJs.js")
+          
+
+
+        
+                    

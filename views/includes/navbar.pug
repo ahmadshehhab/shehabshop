@@ -1,0 +1,62 @@
+nav.navbar.navbar-expand-lg.navbar-dark.bg-dark
+  .container-fluid
+    a.navbar-brand(href='/') 
+      img#logo(src='/images/logo.png' alt='Logo')
+    button.navbar-toggler(type='button' data-bs-toggle='collapse' data-bs-target='#navbarNavDropdown' aria-controls='navbarNavDropdown' aria-expanded='false' aria-label='Toggle navigation')
+      span.navbar-toggler-icon
+    #navbarNavDropdown.collapse.navbar-collapse
+      ul.navbar-nav
+        li.nav-item(style="font-size:x-small;")
+          -if(auth2)
+            a.nav-link.active(aria-current='page' href='/' id="delever") Delever to 
+              span(style="color:#ffffff;border:1px solid green;padding:3px;border-radius:10% ;background-color:green") #{auth2.country}
+
+        li.nav-item
+        -if(!auth2)
+          form(action="/login" method="post")
+
+            button.btn.nav-link(type="submit") Login
+        li.nav-item.dropdown
+          a#navbarDropdownMenuLink.nav-link.dropdown-toggle(href='#' role='button' data-bs-toggle='dropdown' aria-expanded='false')
+            | Your Account
+          ul.dropdown-menu(aria-labelledby='navbarDropdownMenuLink')
+
+            li
+
+              a.dropdown-item(href='#') Settings
+            li
+              -if(auth2)
+                -if(auth2.isAdmin)
+                  form(action="/" method="POST")
+                    button.dropdown-item(type="submit") Get Products
+
+
+            li
+              -if(!auth2)
+                a.dropdown-item(href='/register') Register
+
+        .input-group.bd1(style="position:relative;")
+
+          input.form-control(type='text' placeholder="..." aria-label="Recipient's username" aria-describedby='basic-addon2' onkeyup="sendData(this)")
+          section(id="search-sec" style="color:black;position:absolute;top:39px;") 
+          .input-group-append
+            button.btn.btn-outline-secondary.b3(type='button') Search
+
+
+        div.nav-item(style="width:10%;height:100%;")
+          img(src="/images/palestine.gif" alt="" srcset="" width="50%")
+
+        li.nav-item(id="delever2")
+          a.nav-link.active(aria-current='page' href='/cart' id="cart") Cart
+            span(id="cartnum") 0
+
+
+        li.nav-item.logout
+          -if(auth2)
+            form(action="/logout" method="post")
+              button.btn.btn-danger(type='submit')  logout
+
+
+
+
+
