@@ -1,3 +1,4 @@
 {
-    "jwtprivatekey":"vidly_jwtkey"
+    "jwtprivatekey":"vidly_jwtkey",
+    "db":"shehab_db"
 }
