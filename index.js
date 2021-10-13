@@ -35,7 +35,7 @@ app.use(express.urlencoded({extended:true}))
 app.use(express.json())
 app.use(flash())
 const STORE = new sessionStore({
-  uri : "mongodb://localhost:27017/shop",
+  uri : config.get("db"),
   collection:"sessions"
 })
 
@@ -58,5 +58,5 @@ app.use("/users",userPage)
 app.use("/login",auth)
 app.use("/register",register)
 app.use("/", HomePage)
-let PORT = 3000 || process.env.PORT 
+let PORT = process.env.PORT || 3000
 app.listen(PORT, console.log(chalk.green(`app listen at port =>  ${PORT} --- ${new Date().getMinutes()}` )))
