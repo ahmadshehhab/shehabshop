@@ -25,7 +25,7 @@ if(!config.get("jwtprivatekey")){
   console.error("Fatal Error: jwtprivatekey is not defined")
   process.exit(1)
 }
-mongoose.connect('mongodb://localhost/shop')
+mongoose.connect(config.get('db'),{ useNewUrlParser: true, useUnifiedTopology: true })
   .then(() => console.log(chalk.red('Connected to MongoDB...')))
   .catch(err => console.error('Could not connect to MongoDB...'));
   app.set("view engine", "pug");
