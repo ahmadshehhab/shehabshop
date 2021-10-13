@@ -19,104 +19,106 @@ html(lang="en")
 
   body 
     include includes/navbar.pug 
-    
+
 
     .container-fluid.pro.categore
       .row
 
         .d-none.d-sm-block.col-md-3.col-lg-4.col-xl-2
-          img(src="/images/bank.png", alt="", srcset="",width="100%") 
+          img(src="/images/bank.png" alt="" srcset="" width="100%") 
         .col-12.col-md-9.col-lg-8.col-xl-10(style="display:flex;background-color:white;height:100%;")
           .container-fluid(style="height:100%;width:100%;")
             .row(style="height:60%;")
-             -if(auth2.isAdmin) {
-               .col-12.col-6.col-md-6.col-lg-4.col-xl-3
-                      form(action="/addproduct" method="post",style="display: flex;flex-direction: column;height:100%;justify-content:space-around;")
-                        label New Product 
-                        label(for="text") Name:
-                        input(type="text" name="newname" ) 
-                        
-                        label(for="Number") Price:   
-                        input(type="Number" name="newprice") 
-                        
-                        label(for="Number") New Price:   
-                        input(type="Number" name="newnprice") 
-                        
-                        label(for="text") Image Url:   
-                        input(type="text" name="newimage") 
-                        
-                        label(for="text") Type:   
-                        input(type="text" name="newtype") 
-                        
-                        label(for="Number") Count:   
-                        input(type="Number" name="newcount")
-                        .radio(style="display:flex;justify-content:space-around;align-items:center;width:100%;")
-                          label(for="Bolean") Free Shipping:   
-                          label(for="Bolean") true:    
-                          input(type="radio" name="shipping" value="true") 
-                          label(for="Bolean") false:   
-                          input(type="radio" name="shipping" value="false") 
-                        
-                        input.btn.btn-primary(type="submit" value="add to products" style="margin-bottom:7%;")
-                        
-                        
+              -if(admin !== "no") {
+                    
+                    
+              .col-12.col-6.col-md-6.col-lg-4.col-xl-3
+                form(action="/addproduct" method="post" style="display: flex;flex-direction: column;height:100%;justify-content:space-around;")
+                  label New Product 
+                  label(for="text") Name:
+                  input(type="text" name="newname" ) 
 
-             -}
-              
-              
-             
-              
+                  label(for="Number") Price:   
+                  input(type="Number" name="newprice") 
 
-              -for(pr of prod)  
-                .col-12.col-6.col-md-6.col-lg-4.col-xl-3
-                  .card.catea(style="height:90%;width:100%;position:relative;")
-                    .card-img(style="height:55%;display:flex;justify-content:space-arround;width:70%;")
-                      img.card-img-top(src=pr.image alt='Card image cap')
-                      -if(auth2.isAdmin) {
+                  label(for="Number") New Price:   
+                  input(type="Number" name="newnprice") 
+
+                  label(for="text") Image Url:   
+                  input(type="text" name="newimage") 
+
+                  label(for="text") Type:   
+                  input(type="text" name="newtype") 
+
+                  label(for="Number") Count:   
+                  input(type="Number" name="newcount")
+                  .radio(style="display:flex;justify-content:space-around;align-items:center;width:100%;")
+                    label(for="Bolean") Free Shipping:   
+                    label(for="Bolean") true:    
+                    input(type="radio" name="shipping" value="true") 
+                    label(for="Bolean") false:   
+                    input(type="radio" name="shipping" value="false") 
+
+                  input.btn.btn-primary(type="submit" value="add to products" style="margin-bottom:7%;")
+
+
+              
+              -}
+
+
+
+
+
+               -for(pr of prod)  
+                 .col-12.col-6.col-md-6.col-lg-4.col-xl-3
+                   .card.catea(style="height:90%;width:100%;position:relative;")
+                     .card-img(style="height:55%;display:flex;justify-content:space-arround;width:70%;")
+                       img.card-img-top(src=pr.image alt='Card image cap')
+                       -if(admin !== "no") {
                        
-                        form(action="/products/deleteProduct", method="post" style="position:absolute;top:0;left:0") 
-                          input(type="hidden" name="id" value=`${pr._id}`)
-                          button.btn.btn-danger(type="submit")  X
-                      
-                      -}
-                    .card-body(style="height: 45%;width: 100%;padding: 1rem 0rem;display: flex;flex-direction: column;justify-content: space-around;")
-                     
-                      p.card-text(style="width: 100%;text-align: left;")
-                        | #{pr.name}
-                      -if(pr.shipping){
-                      p.hide | FREE Shipping to Palestinian Territories
-                      -}
-                      
-                      form(action=`/products/` method="get") 
-                        input.btn.btn-primary(type='hidden' name="id" value=`${pr._id}`)
-                        input.btn.btn-primary(type='hidden' name="url", value=`https://amazon.com${pr.urls}`)
-                        .all(style="display:flex;align-items:center")
-                          input.btn.btn-primary(type='submit' value='Buy Now')
-                          .price-all(style="display:flex;justify-content:space-around;width:50%")
-                            .price(style="color:red") #{(pr.Price) +  pr.Price * 10/100 }
-                            .pricee(style="color:blue;") #{(pr.Price) + 5}.0
-                      -if(auth2.isAdmin){
+                         form(action="/products/deleteProduct" method="post" style="position:absolute;top:0;left:0") 
+                           input(type="hidden" name="id" value=`${pr._id}`)
+                           button.btn.btn-danger(type="submit")  X
+
+                       -}
+                     .card-body(style="height: 45%;width: 100%;padding: 1rem 0rem;display: flex;flex-direction: column;justify-content: space-around;")
+               
+                       p.card-text(style="width: 100%;text-align: left;")
+                         | #{pr.name}
+                       -if(pr.shipping){
+                       p.hide | FREE Shipping to Palestinian Territories
+                       -}
+               
+                       form(action=`/products/` method="get") 
+                         input.btn.btn-primary(type='hidden' name="id" value=`${pr._id}`)
+                         input.btn.btn-primary(type='hidden' name="url", value=`https://amazon.com${pr.urls}`)
+                         .all(style="display:flex;align-items:center")
+                           input.btn.btn-primary(type='submit' value='Buy Now')
+                           .price-all(style="display:flex;justify-content:space-around;width:50%")
+                             .price(style="color:red") #{(pr.Price) +  pr.Price * 10/100 }
+                             .pricee(style="color:blue;") #{(pr.Price) + 5}.0
+                         -if(admin !== "no"){
                          form(action=`/products/` method="get") 
-                          input.btn.btn-primary(type='hidden' name="id" value=`${pr._id}`)
-                          input.btn.btn-primary(type='hidden' name="url", value=`https://amazon.com${pr.urls}`)
-                          .all(style="display:flex;align-items:center")
-                            input.btn(type='submit' value='Edit ID')
-                          
-                      -}
-                         
-             
+                           input.btn.btn-primary(type='hidden' name="id" value=`${pr._id}`)
+                           input.btn.btn-primary(type='hidden' name="url", value=`https://amazon.com${pr.urls}`)
+                           .all(style="display:flex;align-items:center")
+                             input.btn(type='submit' value='Edit ID')
+               
+                           -}
 
 
 
 
 
-  
+
+
+
     footer
       p.text #{parag}
       form
         input(type='text' placeholder="Write us your opinion")
         input(type='submit' value=yon)
-    
+
       ul.list-footer
         li
           a(href='#') About
@@ -161,14 +163,14 @@ html(lang="en")
 
 
   .cola
-                  form(action="/" method="POST")
-                    input(type="Number" name="Price") | price
-                    input(type="text" name="Name") name
-                    button(type="button" class="btn btn-primary") click 
-                    input(type="text" name="Description") d 
-                    input(type="hidden" name="id" ,value="#{pps._id}")
-                    input(type="submit" value="add to products") s
-                    
+    form(action="/" method="POST")
+      input(type="Number" name="Price") | price
+      input(type="text" name="Name") name
+      button(type="button" class="btn btn-primary") click 
+      input(type="text" name="Description") d 
+      input(type="hidden" name="id" ,value="#{pps._id}")
+      input(type="submit" value="add to products") s
+
 -//
 
 

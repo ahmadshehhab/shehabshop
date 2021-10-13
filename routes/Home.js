@@ -40,19 +40,22 @@ const links = {
 };
 
 router.get("/beautyPicks",bodyBarser.urlencoded({ extended: true }),async (req, res) => {
-    const pro = await Product.find({});
+    const pro = await Product.find({ type: "ball" });
     var yon;
   if (req.session.userId) {
     var yon = "Send";
   } else {
     var yon = "Login";
   }
-
+    if(req.session.userId){
+    var admin = req.session.userId.isAdmin 
+    }else{admin = "no"}
     res.render("beautyPicks", {
       data: mocke,
       prod: pro,
       auth2: req.session.userId,
       links: links,
+      admin:admin,
       yon:yon
 
       /* parag:resulte */
@@ -102,11 +105,15 @@ router.get("/invicta", async (req, res) => {
   } else {
     var yon = "Login";
   }
+  if(req.session.userId){
+    var admin = req.session.userId.isAdmin 
+    }else{admin = "no"}
   res.render("beautyPicks", {
     data: mocke,
     prod: pro,
     auth2: req.session.userId,
     links: links,
+    admin:admin,
     yon: yon,
     /* parag:resulte */
   });
@@ -119,12 +126,16 @@ router.get("/alpina", async (req, res) => {
   } else {
     var yon = "Login";
   }
+  if(req.session.userId){
+    var admin = req.session.userId.isAdmin 
+    }else{admin = "no"}
   res.render("beautyPicks", {
     data: mocke,
     prod: pro,
     auth2: req.session.userId,
     links: links,
     yon: yon,
+    admin:admin
     /* parag:resulte */
   });
 });
@@ -136,12 +147,100 @@ router.get("/citizen", async (req, res) => {
   } else {
     var yon = "Login";
   }
+  if(req.session.userId){
+    var admin = req.session.userId.isAdmin 
+    }else{admin = "no"}
   res.render("beautyPicks", {
     data: mocke,
     prod: pro,
     auth2: req.session.userId,
     links: links,
     yon: yon,
+    admin:admin
+    /* parag:resulte */
+  });
+});
+router.get("/breed", async (req, res) => {
+  const pro = await Product.find({ type: "breed" });
+  var yon;
+  if (req.session.userId) {
+    var yon = "Send";
+  } else {
+    var yon = "Login";
+  }
+  if(req.session.userId){
+    var admin = req.session.userId.isAdmin 
+    }else{admin = "no"}
+  res.render("beautyPicks", {
+    data: mocke,
+    prod: pro,
+    auth2: req.session.userId,
+    links: links,
+    yon: yon,
+    admin:admin
+    /* parag:resulte */
+  });
+});
+router.get("/bell&ross", async (req, res) => {
+  const pro = await Product.find({ type: "bell&ross" });
+  var yon;
+  if (req.session.userId) {
+    var yon = "Send";
+  } else {
+    var yon = "Login";
+  }
+  if(req.session.userId){
+    var admin = req.session.userId.isAdmin 
+    }else{admin = "no"}
+  res.render("beautyPicks", {
+    data: mocke,
+    prod: pro,
+    auth2: req.session.userId,
+    links: links,
+    yon: yon,
+    admin:admin
+    /* parag:resulte */
+  });
+});
+router.get("/apple", async (req, res) => {
+  const pro = await Product.find({ type: "apple" });
+  var yon;
+  if (req.session.userId) {
+    var yon = "Send";
+  } else {
+    var yon = "Login";
+  }
+  if(req.session.userId){
+    var admin = req.session.userId.isAdmin 
+    }else{admin = "no"}
+  res.render("beautyPicks", {
+    data: mocke,
+    prod: pro,
+    auth2: req.session.userId,
+    links: links,
+    yon: yon,
+    admin:admin
+    /* parag:resulte */
+  });
+});
+router.get("/tommyhilfiger", async (req, res) => {
+  const pro = await Product.find({ type: "tommyhilfiger" });
+  var yon;
+  if (req.session.userId) {
+    var yon = "Send";
+  } else {
+    var yon = "Login";
+  }
+  if(req.session.userId){
+    var admin = req.session.userId.isAdmin 
+    }else{admin = "no"}
+  res.render("beautyPicks", {
+    data: mocke,
+    prod: pro,
+    auth2: req.session.userId,
+    links: links,
+    yon: yon,
+    admin:admin
     /* parag:resulte */
   });
 });

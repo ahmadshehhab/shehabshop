@@ -47,7 +47,7 @@ app.use(session({
 const Product = require("./models/product");
 app.post("/getproducts",async (req,res)=>{
   let payload = req.body.payload.trim()
-  console.log(payload)
+  
   let search = await Product.find({name:{$regex:new RegExp("^"+payload+".*","i")}}).exec()
   search = search.slice(0,10)
   res.send({payload:search})
