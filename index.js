@@ -60,4 +60,3 @@ app.use("/register",register)
 app.use("/", HomePage)
 let PORT = 3000 || process.env.PORT 
 app.listen(PORT, console.log(chalk.green(`app listen at port =>  ${PORT} --- ${new Date().getMinutes()}` )))
-console.log(chalk.green("ahmad shrhab ",'\n'," "))
