@@ -58,7 +58,7 @@ router.get("/",asyncMiddleware(async (req, res, next) => {
   
   (async () => {
     
-    const browser = await puppeteer.launch({headless:false});
+    const browser = await puppeteer.launch({ args: ['--no-sandbox'] });
     const page = await browser.newPage();
     await page.setDefaultNavigationTimeout(0);
     await page.goto(url);
