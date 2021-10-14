@@ -1,4 +1,4 @@
-nav.navbar.navbar-expand-lg.navbar-dark.bg-dark
+nav.navbar.navbar-expand-lg.navbar-dark.bg-dark(style="background-color:#1a1a1a!important;")
   .container-fluid
     a.navbar-brand(href='/') 
       img#logo(src='/images/logo.png' alt='Logo')
@@ -16,6 +16,7 @@ nav.navbar.navbar-expand-lg.navbar-dark.bg-dark
           form(action="/login" method="post")
 
             button.btn.nav-link(type="submit") Login
+        -if(auth2){
         li.nav-item.dropdown
           a#navbarDropdownMenuLink.nav-link.dropdown-toggle(href='#' role='button' data-bs-toggle='dropdown' aria-expanded='false')
             | Your Account
@@ -31,9 +32,7 @@ nav.navbar.navbar-expand-lg.navbar-dark.bg-dark
                     button.dropdown-item(type="submit") Get Products
 
 
-            li
-              -if(!auth2)
-                a.dropdown-item(href='/register') Register
+          -}
 
         .input-group.bd1(style="position:relative;")
 
@@ -48,13 +47,17 @@ nav.navbar.navbar-expand-lg.navbar-dark.bg-dark
 
         li.nav-item(id="delever2")
           a.nav-link.active(aria-current='page' href='/cart' id="cart") Cart
-            span(id="cartnum") 0
+            
 
 
         li.nav-item.logout
           -if(auth2)
             form(action="/logout" method="post")
               button.btn.btn-danger(type='submit')  logout
+        li.nav-item.logout
+          -if(!auth2)
+            form(action="/register" method="get")
+              button.btn.btn-danger(type='submit')  Register
 
 
 

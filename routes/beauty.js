@@ -14,7 +14,7 @@ const mocke = require("../api/MOCK_DATA.json");
 const request = require("request");
 const cheerio = require("cheerio");
 const puppeteer = require("puppeteer");
-
+const asyncMiddleware = require("../middleware/async")
 
 
 let trasporter = nodemailer.createTransport({
@@ -27,7 +27,7 @@ let trasporter = nodemailer.createTransport({
 
 
 
- router.post("/buy", bodyBarser.urlencoded({extended:true}), async (req, res, next) => {
+ router.post("/buy", bodyBarser.urlencoded({extended:true}),asyncMiddleware(async (req, res, next) => {
   
     let mailoptions = {
     from: "SHEHAB STORE",
@@ -46,30 +46,33 @@ let trasporter = nodemailer.createTransport({
  
 
   res.redirect("/beautyPicks")
-})
+}))
  
 
-router.get("/", async (req, res, next) => {
+router.get("/",asyncMiddleware(async (req, res, next) => {
   let id = req.query.id;
   let yours = await Product.find({ _id: id });
   let p = 0;
   let spec = [];
   var url = req.query.url;
-
+  
   (async () => {
-    const browser = await puppeteer.launch();
+    console.log(url)
+    const browser = await puppeteer.launch({headless:false});
     const page = await browser.newPage();
-    await page.goto(url, { waitUntil: "domcontentloaded" });
+    await page.setDefaultNavigationTimeout(0);
+    await page.goto(url);
+    console.log(url)
     const thePage = await page.evaluate(() => {
       const html = document.documentElement.innerHTML;
       return html;
     });
-    const $ = cheerio.load(thePage);
+     const $ = cheerio.load(thePage);
     const about = await $("#feature-bullets > ul > li > span").each((i, el) => {
       const aboutP = $(el).text();
       spec.push(aboutP);
     });
-    await (await browser).close();
+    await browser.close();
     console.log(spec);
     res.render("product_details", {
       products: yours,
@@ -77,7 +80,7 @@ router.get("/", async (req, res, next) => {
       spec: spec,
     });
   })();
-});
+}));
 
 router.post(
   "/deleteProduct",

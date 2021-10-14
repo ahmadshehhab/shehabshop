@@ -335,14 +335,10 @@ footer input:hover[type='submit'] {background: rgb(219, 3, 154);}
         
     }
 }
-#sproductp
-{
-    width: 30%;
-    
-}
+
 #sproductp .card 
 {
-    width:100%;
+    
     border-radius: 0px;
     
 }
@@ -397,10 +393,11 @@ hr:not([size]){
 #prow
 {
     
-    display: flex;
-    justify-content: space-around;
-    width: 100%;
-    padding: 4%;
+    
+    margin: auto;
+    width: 90%;
+    justify-content: center;
+    
     
    
 
@@ -417,7 +414,28 @@ hr:not([size]){
 #aboutp
 {
     background-color: white;
-    width:70%;
+    
+}
+.payment
+{
+    border: 1px solid black;
+    position: relative;
+    padding: 3%;
+    width:80%;
+}
+.payment_id
+{
+    position: absolute;
+    background-color: white;
+    top: -13px;
+    left: 10px;
+
+}
+.payment_method
+{
+    margin-top: 5%;
+    color:blue
+    
 }
 .edit
 {
@@ -451,6 +469,30 @@ hr:not([size]){
     cursor: pointer;
     
 }
+.nav_login_account
+{
+    display:flex;
+    align-items: center;
+    text-align: center;
+    justify-content: space-around;
+    width:40%;
+}
+
+.nav_icon_search
+{
+    display:flex;
+    align-items: center;
+    text-align: center;
+    justify-content: space-around;
+    width:60%;
+    height: 100%;
+
+}
+.cont
+{
+    margin-top:5%;
+    background-color: white;
+}
 .col-12.col-6.col-md-6.col-lg-4.col-xl-3::after
 {
     margin:-1px
@@ -463,14 +505,4 @@ hr:not([size]){
     color:black;
     background-color: rgb(129, 129, 129);
 }
-p.hide
-{
-    white-space: nowrap;overflow: hidden;text-overflow: ellipsis;
-}
-.hide:hover
-{
-    white-space: normal;
-    overflow: visible;
-    text-overflow: unset;
-    font-size: 12px;
-}
+

@@ -85,9 +85,7 @@ html(lang="en")
                
                        p.card-text(style="width: 100%;text-align: left;")
                          | #{pr.name}
-                       -if(pr.shipping){
-                       p.hide | FREE Shipping to Palestinian Territories
-                       -}
+                      
                
                        form(action=`/products/` method="get") 
                          input.btn.btn-primary(type='hidden' name="id" value=`${pr._id}`)
@@ -97,14 +95,7 @@ html(lang="en")
                            .price-all(style="display:flex;justify-content:space-around;width:50%")
                              .price(style="color:red") #{(pr.Price) +  pr.Price * 10/100 }
                              .pricee(style="color:blue;") #{(pr.Price) + 5}.0
-                         -if(admin === true){
-                         form(action=`/products/` method="get") 
-                           input.btn.btn-primary(type='hidden' name="id" value=`${pr._id}`)
-                           input.btn.btn-primary(type='hidden' name="url", value=`https://amazon.com${pr.urls}`)
-                           .all(style="display:flex;align-items:center")
-                             input.btn(type='submit' value='Edit ID')
-               
-                           -}
+                         
 
 
 
